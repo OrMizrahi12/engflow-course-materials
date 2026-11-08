@@ -22,4 +22,5 @@ course is filed into either project.
 
 | Lesson | Folder |
 |---|---|
+| 1.2 Fifteen minutes of vibe coding | [lessons/1.2](lessons/1.2) |
 | 2.1 Install the toolchain | [lessons/2.1](lessons/2.1) |
