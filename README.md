@@ -28,3 +28,4 @@ course is filed into either project.
 | 2.2 Claude Code for engineers | [lessons/2.2](lessons/2.2) |
 | 2.3 The smart zone | [lessons/2.3](lessons/2.3) |
 | 2.4 Skills, explained | [lessons/2.4](lessons/2.4) |
+| 3.1 /grill-me: get interviewed about your idea | [lessons/3.1](lessons/3.1) |

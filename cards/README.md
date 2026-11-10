@@ -11,3 +11,4 @@ One page per skill and per workflow: what goes in, what comes out, when to use i
 | [claude-code-controls.md](claude-code-controls.md) | Claude Code controls: the four permission modes, plan first, what rewind does and does not undo, CLAUDE.md as a map | 2.2 |
 | [smart-zone.md](smart-zone.md) | the context window and the smart zone, /context, the status line, /clear, primary vs secondary sources, a fresh reviewer | 2.3 |
 | [skills.md](skills.md) | skills: what a skill is, the two kinds (you type it / Claude can call it), marketplace -> plugin -> skills, scopes and updates, the name rule, /ask-matt | 2.4 |
+| [grilling.md](grilling.md) | grilling: what goes in and out, the round format, answering by number, facts vs decisions, the four doors, how it goes wrong | 3.1 |
