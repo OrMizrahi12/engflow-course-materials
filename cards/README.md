@@ -9,3 +9,4 @@ One page per skill and per workflow: what goes in, what comes out, when to use i
 | [ten-rules.md](ten-rules.md) | the ten rules, the three review layers and the four failure modes | 1.3 |
 | [flow-map.md](flow-map.md) | the course map from an idea to production, the modules on it, and the engineer's day | 1.3 |
 | [claude-code-controls.md](claude-code-controls.md) | Claude Code controls: the four permission modes, plan first, what rewind does and does not undo, CLAUDE.md as a map | 2.2 |
+| [smart-zone.md](smart-zone.md) | the context window and the smart zone, /context, the status line, /clear, primary vs secondary sources, a fresh reviewer | 2.3 |

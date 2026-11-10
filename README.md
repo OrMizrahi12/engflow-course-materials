@@ -26,3 +26,4 @@ course is filed into either project.
 | 1.3 Reverse-engineering a professional | [lessons/1.3](lessons/1.3) |
 | 2.1 Install the toolchain | [lessons/2.1](lessons/2.1) |
 | 2.2 Claude Code for engineers | [lessons/2.2](lessons/2.2) |
+| 2.3 The smart zone | [lessons/2.3](lessons/2.3) |
