@@ -27,3 +27,4 @@ course is filed into either project.
 | 2.1 Install the toolchain | [lessons/2.1](lessons/2.1) |
 | 2.2 Claude Code for engineers | [lessons/2.2](lessons/2.2) |
 | 2.3 The smart zone | [lessons/2.3](lessons/2.3) |
+| 2.4 Skills, explained | [lessons/2.4](lessons/2.4) |
