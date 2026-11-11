@@ -16,3 +16,5 @@ One page per skill and per workflow: what goes in, what comes out, when to use i
 | [setup-matt-pocock-skills.md](setup-matt-pocock-skills.md) | the setup skill: what goes in and out, the three questions, how it runs, who reads which file, once per repository | 3.2 |
 | [grill-with-docs.md](grill-with-docs.md) | /grill-with-docs: one command, two skills (grilling and domain-modeling), what goes in and out, the glossary as you go, ADRs only when all three tests pass, when to use it vs /grill-me | 3.3 |
 | [glossary-and-adr.md](glossary-and-adr.md) | the glossary and the ADR: one meaning per word with an avoid list and no implementation details, the three tests for an ADR, what goes in neither (the spec) | 3.3 |
+| [domain-modeling.md](domain-modeling.md) | /domain-modeling: put a project's words under pressure; what goes in and out, the four moves and three destinations (glossary, ADR, spec), why a glossary should shrink as often as it grows | 3.4 |
+| [wait-what.md](wait-what.md) | /wait-what: when a reply doesn't land, send it back; what goes in and out, the re-pitch in short plain sentences using the glossary's words | 3.4 |

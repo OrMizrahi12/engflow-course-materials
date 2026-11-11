@@ -31,3 +31,4 @@ course is filed into either project.
 | 3.1 /grill-me: get interviewed about your idea | [lessons/3.1](lessons/3.1) |
 | 3.2 The repo and /setup-matt-pocock-skills | [lessons/3.2](lessons/3.2) |
 | 3.3 /grill-with-docs | [lessons/3.3](lessons/3.3) |
+| 3.4 The project's language | [lessons/3.4](lessons/3.4) |
