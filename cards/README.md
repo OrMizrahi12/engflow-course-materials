@@ -14,3 +14,5 @@ One page per skill and per workflow: what goes in, what comes out, when to use i
 | [grilling.md](grilling.md) | grilling: what goes in and out, the round format, answering by number, facts vs decisions, the four doors, how it goes wrong | 3.1 |
 | [git-and-github-words.md](git-and-github-words.md) | the six words of git and GitHub: repository, commit, branch, issue, label, pull request, plus the copy, push and remote | 3.2 |
 | [setup-matt-pocock-skills.md](setup-matt-pocock-skills.md) | the setup skill: what goes in and out, the three questions, how it runs, who reads which file, once per repository | 3.2 |
+| [grill-with-docs.md](grill-with-docs.md) | /grill-with-docs: one command, two skills (grilling and domain-modeling), what goes in and out, the glossary as you go, ADRs only when all three tests pass, when to use it vs /grill-me | 3.3 |
+| [glossary-and-adr.md](glossary-and-adr.md) | the glossary and the ADR: one meaning per word with an avoid list and no implementation details, the three tests for an ADR, what goes in neither (the spec) | 3.3 |
