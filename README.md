@@ -29,3 +29,4 @@ course is filed into either project.
 | 2.3 The smart zone | [lessons/2.3](lessons/2.3) |
 | 2.4 Skills, explained | [lessons/2.4](lessons/2.4) |
 | 3.1 /grill-me: get interviewed about your idea | [lessons/3.1](lessons/3.1) |
+| 3.2 The repo and /setup-matt-pocock-skills | [lessons/3.2](lessons/3.2) |

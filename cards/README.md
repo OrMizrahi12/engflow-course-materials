@@ -12,3 +12,5 @@ One page per skill and per workflow: what goes in, what comes out, when to use i
 | [smart-zone.md](smart-zone.md) | the context window and the smart zone, /context, the status line, /clear, primary vs secondary sources, a fresh reviewer | 2.3 |
 | [skills.md](skills.md) | skills: what a skill is, the two kinds (you type it / Claude can call it), marketplace -> plugin -> skills, scopes and updates, the name rule, /ask-matt | 2.4 |
 | [grilling.md](grilling.md) | grilling: what goes in and out, the round format, answering by number, facts vs decisions, the four doors, how it goes wrong | 3.1 |
+| [git-and-github-words.md](git-and-github-words.md) | the six words of git and GitHub: repository, commit, branch, issue, label, pull request, plus the copy, push and remote | 3.2 |
+| [setup-matt-pocock-skills.md](setup-matt-pocock-skills.md) | the setup skill: what goes in and out, the three questions, how it runs, who reads which file, once per repository | 3.2 |
