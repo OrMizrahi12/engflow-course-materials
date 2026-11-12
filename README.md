@@ -35,3 +35,4 @@ course is filed into either project.
 | 4.1 /research and /to-questionnaire | [lessons/4.1](lessons/4.1) |
 | 4.2 /handoff and a logic prototype | [lessons/4.2](lessons/4.2) |
 | 5.1 Tests, seams and modules in plain words | [lessons/5.1](lessons/5.1) |
+| 5.2 /to-spec | [lessons/5.2](lessons/5.2) |
