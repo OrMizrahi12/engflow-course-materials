@@ -33,3 +33,4 @@ course is filed into either project.
 | 3.3 /grill-with-docs | [lessons/3.3](lessons/3.3) |
 | 3.4 The project's language | [lessons/3.4](lessons/3.4) |
 | 4.1 /research and /to-questionnaire | [lessons/4.1](lessons/4.1) |
+| 4.2 /handoff and a logic prototype | [lessons/4.2](lessons/4.2) |
