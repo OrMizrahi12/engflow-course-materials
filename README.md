@@ -37,3 +37,4 @@ course is filed into either project.
 | 5.1 Tests, seams and modules in plain words | [lessons/5.1](lessons/5.1) |
 | 5.2 /to-spec | [lessons/5.2](lessons/5.2) |
 | 5.3 /to-tickets | [lessons/5.3](lessons/5.3) |
+| 6.1 The walking skeleton | [lessons/6.1](lessons/6.1) |
