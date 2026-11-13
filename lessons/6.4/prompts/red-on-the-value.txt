@@ -1,0 +1,1 @@
+Good. From now on a red has to fail on the value, not on a missing name. Carry on one slice at a time: the leftover unit, balances with settlements, then suggested settlements up to the spec's five-member example. Commit each green slice, and stop when the spec's examples pass.

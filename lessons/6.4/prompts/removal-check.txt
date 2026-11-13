@@ -1,0 +1,1 @@
+One more check before we push: was any of this code written before a test asked for it? Take each line or condition of the engine out on its own, run the tests, put it back. Show me what no test notices.

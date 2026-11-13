@@ -1,0 +1,1 @@
+Leave them: none of the seven changes a result, and taking out code that no test notices is tidying. Tidying belongs to the review, in its own session, not to this loop. Next, push the branch and watch CI, and add a short comment to spec #1 that records the seam change and why. No PR yet.
