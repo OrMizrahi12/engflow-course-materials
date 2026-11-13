@@ -1,0 +1,1 @@
+Push it, open the PR with /pr and queue auto-merge as the new rules say. There's no ticket for this one. The check only reaches main with #13, so it will wait for that.

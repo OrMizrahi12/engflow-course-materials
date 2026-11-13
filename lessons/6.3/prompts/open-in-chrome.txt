@@ -1,0 +1,1 @@
+Open it in Chrome for me with xdg-open; no extension needed.
