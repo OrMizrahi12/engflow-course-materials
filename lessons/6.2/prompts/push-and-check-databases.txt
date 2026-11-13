@@ -1,0 +1,1 @@
+The wizard is done. Push this branch, and when its preview is ready, check which Neon database production, the preview and Development really got. Host names only, never a password, and don't read .env.local.

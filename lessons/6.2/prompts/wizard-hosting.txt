@@ -1,0 +1,1 @@
+Set up where Potluck runs, for ticket #2's Hosting criteria: Vercel and Neon, so we get local, preview and production. Show me the stages before you write anything. Code that belongs to it, like migrations in the Vercel build, you write; the wizard is only for what I have to click. Playwright, the CI checks, branch protection and the firewall rule come later, not today.
