@@ -42,3 +42,4 @@ course is filed into either project.
 | 6.3 The landing loop | [lessons/6.3](lessons/6.3) |
 | 6.4 /tdd live | [lessons/6.4](lessons/6.4) |
 | 6.5 Give Claude eyes | [lessons/6.5](lessons/6.5) |
+| 7.1 Three kinds of review | [lessons/7.1](lessons/7.1) |

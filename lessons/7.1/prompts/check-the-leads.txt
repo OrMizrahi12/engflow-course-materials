@@ -1,0 +1,1 @@
+Three reviews, a lot of findings. Before we change anything, check each one against what it cites: the glossary, the spec and its comments, the code. One line per finding: does it hold up, and what's your evidence? Don't edit any files yet.
