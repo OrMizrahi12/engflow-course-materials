@@ -1,0 +1,1 @@
+The browser test in #3 runs on the preview, and that needs the bypass secret from #12, which doesn't exist yet. So leave every browser step out for now: build #3 until its service tests pass and the page works, and we'll add the browser check together afterwards. Stop any server you start. Commit on this branch; don't push or open a PR.

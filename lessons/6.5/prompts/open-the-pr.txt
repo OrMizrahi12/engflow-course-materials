@@ -1,0 +1,1 @@
+Open the PR for #3. Commit the screenshots a reviewer needs on this branch (a branch of their own would get its own preview and database copy) and show them in Evidence. It adds a migration, so don't queue auto-merge: that one waits for me.

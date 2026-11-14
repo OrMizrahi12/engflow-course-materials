@@ -1,0 +1,1 @@
+I'll run the dev server in my own terminal, so I see what it prints and you don't. Make npm run dev also write everything it prints to .data/logs/dev-latest.log, keep that folder out of git, and add one line to CLAUDE.md saying where the logs are. That isn't part of #3, so land it as its own PR from main with auto-merge, then bring main back into this branch.
