@@ -1,0 +1,1 @@
+Do 2, 3, 4 and 6 on the standards branch, because the Words rule and the CLAUDE.md line live only there. Before the ESLint rule goes in, try it: run it over the engine as it was before the review (aedf1b4) and over main with the engine merged in, and show me what it flags in each. Delete the CLAUDE.md section. Leave 1 and 5 for now. Commit, but don't push.
