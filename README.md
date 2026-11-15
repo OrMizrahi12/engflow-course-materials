@@ -44,3 +44,4 @@ course is filed into either project.
 | 6.5 Give Claude eyes | [lessons/6.5](lessons/6.5) |
 | 7.1 Three kinds of review | [lessons/7.1](lessons/7.1) |
 | 7.2 /retro | [lessons/7.2](lessons/7.2) |
+| 8.1 Three tickets at once | [lessons/8.1](lessons/8.1) |

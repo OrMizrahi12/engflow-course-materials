@@ -1,0 +1,1 @@
+for n in $(gh issue list -l ready-for-agent --json number -q '.[].number' | sort -n); do echo "#$n $(gh api repos/{owner}/{repo}/issues/$n/dependencies/blocked_by -q 'map(select(.state=="open")) | if length==0 then "ready" else "blocked by " + (map("#\(.number)") | join(" ")) end')"; done

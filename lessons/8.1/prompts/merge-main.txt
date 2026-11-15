@@ -1,0 +1,1 @@
+Main has moved twice since this branch started: #23 and #9 are merged. Merge origin/main into this branch here. If it conflicts, before you resolve anything show me each conflicting hunk, both sides, and what each side wanted. Then resolve them so both changes stay, run npm run check, and commit the merge. Don't push yet.
