@@ -1,0 +1,1 @@
+Both PRs are merged. Confirm the deploys the way docs/agents/landing.md says.

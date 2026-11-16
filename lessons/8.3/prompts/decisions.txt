@@ -1,0 +1,1 @@
+File each decision you left for me in PR #30 as its own ready-for-human ticket, the way docs/agents/issue-tracker.md says. Then tell me the numbers.

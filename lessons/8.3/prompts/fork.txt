@@ -1,0 +1,1 @@
+From Vercel's public docs only: how long are request logs kept, and can a path be kept out of them? Add what you find, with links, as a comment on the ready-for-human ticket about Vercel's logs. Don't name our team or project, and change no code.
