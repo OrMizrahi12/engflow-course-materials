@@ -1,0 +1,1 @@
+Q3: required, as you say. Q4: not in this change. It is one concrete behaviour with nothing left to decide, so I will build it test-first on its own afterwards. Q5: yes. Q6: yes.

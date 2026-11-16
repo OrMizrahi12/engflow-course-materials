@@ -1,0 +1,1 @@
+A link that cannot be a group link at all (not 22 base64url characters) gets the same 404 as an unknown one, without touching the database. Every guessed link wakes the database now, and its free hours are a budget. Commit when green.

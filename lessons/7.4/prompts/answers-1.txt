@@ -1,0 +1,1 @@
+Q1: a. Q2: yes, but leave URL off the Avoid list. Our lint bans every one-word Avoid entry from code names, and the code already says url and databaseUrl for real URLs.

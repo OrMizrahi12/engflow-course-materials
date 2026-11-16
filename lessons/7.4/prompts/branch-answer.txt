@@ -1,0 +1,1 @@
+Wait for #21 to merge, but do not open its PR yet. A fresh session reviews #21 first, then it lands. This change comes after, in its own worktree off main.

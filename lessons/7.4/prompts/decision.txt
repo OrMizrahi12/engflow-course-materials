@@ -1,0 +1,1 @@
+Commit the shape check and its unit test now, and land it. File the dev error as its own issue: the browser walk and the helpers move go with that fix, not in this PR. Stop the dev server when you are done.

@@ -1,0 +1,1 @@
+Push it and land it the way docs/agents/landing.md says. A fresh review is in: put curl output from a production build in the Evidence, and name the Proxy's database lookup on every group link as an accepted tradeoff.
