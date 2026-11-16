@@ -49,4 +49,5 @@ course is filed into either project.
 | 7.5 Make the skills yours | [lessons/7.5](lessons/7.5) |
 | 8.1 Three tickets at once | [lessons/8.1](lessons/8.1) |
 | 8.3 Background sessions and phase boundaries | [lessons/8.3](lessons/8.3) |
+| 9.1 /wayfinder: chart the map | [lessons/9.1](lessons/9.1) |
 | 10.1 Day one in Spliit | [lessons/10.1](lessons/10.1) |
