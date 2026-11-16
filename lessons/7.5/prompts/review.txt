@@ -1,0 +1,1 @@
+origin/main. Spec: both sub-agent briefs end with the docs' guard line, upstream's fresh-context line is kept, and skills-lock.json pins upstream main.

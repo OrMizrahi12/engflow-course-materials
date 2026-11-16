@@ -1,0 +1,1 @@
+How git merges branches, and how to resolve a merge conflict. Why: next week I run three Claude Code sessions on three tickets at once, and two of them will change the same file. I know commits, branches and pull requests, and I read diffs, but I've never resolved a conflict myself. Don't open files for me; I'll open the lesson.
