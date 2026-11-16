@@ -1,0 +1,1 @@
+Check that creating a group and opening its link still works in the running app. Don't commit anything.

@@ -1,0 +1,1 @@
+I tested the new CLAUDE.md in a fresh session: it took #4 from ticket to merge and never reached the Next.js docs, because Claude Code doesn't load AGENTS.md. Add that pointer, leading word first, and commit.

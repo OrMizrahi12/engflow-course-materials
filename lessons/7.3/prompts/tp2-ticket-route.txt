@@ -1,0 +1,1 @@
+Next I'll hand you #4. Without writing any code, tell me how you'd take it from ticket to merged here, and where the rules for each step live.

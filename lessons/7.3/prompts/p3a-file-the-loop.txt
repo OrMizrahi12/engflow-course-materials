@@ -1,0 +1,1 @@
+File the reload loop as its own issue, the way docs/agents/issue-tracker.md says, labelled needs-triage. Put in what you saw and the fixes you'd weigh. Keep machine paths and group links out of it.

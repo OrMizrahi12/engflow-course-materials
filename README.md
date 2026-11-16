@@ -44,6 +44,7 @@ course is filed into either project.
 | 6.5 Give Claude eyes | [lessons/6.5](lessons/6.5) |
 | 7.1 Three kinds of review | [lessons/7.1](lessons/7.1) |
 | 7.2 /retro | [lessons/7.2](lessons/7.2) |
+| 7.3 Writing for agents | [lessons/7.3](lessons/7.3) |
 | 7.4 The small-change path | [lessons/7.4](lessons/7.4) |
 | 7.5 Make the skills yours | [lessons/7.5](lessons/7.5) |
 | 8.1 Three tickets at once | [lessons/8.1](lessons/8.1) |

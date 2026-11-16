@@ -1,0 +1,1 @@
+Two things. Steps 5 and 6 of the skill end without a done-when: give each one. Then CLAUDE.md. It loads into every session, so every line has to earn that: a context pointer with its leading word up front, nothing the environment or the verify skill already says, and anything only some sessions need behind a pointer. Keep every file it points at reachable. Commit, don't push.
