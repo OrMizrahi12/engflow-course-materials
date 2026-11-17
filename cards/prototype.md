@@ -41,6 +41,22 @@ answers the question, and throw it away.
    for Dee on a $10 pizza moves the extra cent onto Cai, who wasn't touched.
 4. Seven decisions went to the spec notes; the prototype went to the branch `prototype/balances`, never merged.
 
+## A UI prototype (Lesson 9.2)
+
+When the question is "what should this look like?", the skill takes its UI path instead of one HTML file:
+
+- **On the real page.** The variants render on the page that already exists, chosen by a `?variant=` URL parameter; only
+  the rendering swaps, while the routes, data and auth stay. A floating bar flips between them, and it is hidden in
+  production builds so a stray merge can't ship it.
+- **Structurally different.** Each variant lays the page out in its own way, not the same layout in another color.
+- **Hand over a URL.** The person flips through the variants in the browser, and the feedback is often a mix of parts.
+
+On camera, ticket #50 of a wayfinder map asked how a foreign amount should show on the expense and settlement forms and
+lists. A session in its own worktree (`claude -w foreign-amount-ui`) built three variants: A, one quiet line under the
+amount; B, three linked fields; C, "choose how it counts". We tried them with real values, and the verdict was A, plus
+one rule taken from B (a typed bank amount stays fixed). The verdict went on the ticket; the code stayed on the branch
+`prototype/foreign-amount-ui`, with no pull request, and `main` didn't move.
+
 ## Rules of thumb
 
 - **Write the question at the top.** If you can't, you're not ready to prototype.

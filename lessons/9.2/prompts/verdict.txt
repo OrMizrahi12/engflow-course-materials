@@ -1,0 +1,1 @@
+A wins, in the forms and in the lists: the group-currency amount leads and the foreign amount stays quiet. Take one rule from B: once someone types what their bank charged, that amount stays fixed when they change the foreign amount, and the rate is worked out from it.

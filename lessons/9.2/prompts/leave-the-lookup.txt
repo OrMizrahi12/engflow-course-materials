@@ -1,0 +1,1 @@
+Yes to all four. Leave "when a rate can't be looked up" as it is: another session has it open, and the lookup is the same for both.
