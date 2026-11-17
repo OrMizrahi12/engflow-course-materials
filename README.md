@@ -53,3 +53,4 @@ course is filed into either project.
 | 9.2 Work the map | [lessons/9.2](lessons/9.2) |
 | 10.1 Day one in Spliit | [lessons/10.1](lessons/10.1) |
 | 10.2 /triage real issues | [lessons/10.2](lessons/10.2) |
+| 10.3 /diagnosing-bugs I: the loop first | [lessons/10.3](lessons/10.3) |
