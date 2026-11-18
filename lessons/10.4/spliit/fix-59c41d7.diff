@@ -1,0 +1,69 @@
+diff --git a/src/lib/schemas.test.ts b/src/lib/schemas.test.ts
+index 9494d38..04ce752 100644
+--- a/src/lib/schemas.test.ts
++++ b/src/lib/schemas.test.ts
+@@ -1,4 +1,4 @@
+-import { expenseFormSchema } from './schemas'
++import { expenseFormSchema, groupFormSchema } from './schemas'
+ 
+ function byAmountExpense(amount: string, shares: string[]) {
+   return {
+@@ -60,3 +60,40 @@ describe('expenseFormSchema, split by amount', () => {
+     ])
+   })
+ })
++
++// groupFormSchema is the only check on a group name: the group form, the
++// create procedure and the update (edit) procedure all validate against it.
++describe('groupFormSchema, group name', () => {
++  function nameIssues(name: string): string[] {
++    const result = groupFormSchema.safeParse({
++      name,
++      currency: '$',
++      participants: [{ name: 'John' }],
++    })
++    return result.success
++      ? []
++      : result.error.issues
++          .filter((i) => i.path.join('.') === 'name')
++          .map((i) => i.message)
++  }
++
++  it.each([
++    ['empty', ''],
++    ['one space', ' '],
++    ['spaces only', '     '],
++    ['tabs only', '\t\t'],
++    ['no-break spaces only', '  '],
++    ['zero-width spaces only', '​​'],
++    ['one visible character among spaces', '   x'],
++  ])('rejects a name with fewer than two visible characters: %s', (_, name) => {
++    expect(nameIssues(name)).toEqual(['min2'])
++  })
++
++  it.each([
++    ['two characters', 'Jo'],
++    ['an ordinary name', 'Trip to Rome'],
++    ['a name with surrounding spaces', '  Trip  '],
++  ])('accepts %s', (_, name) => {
++    expect(nameIssues(name)).toEqual([])
++  })
++})
+diff --git a/src/lib/schemas.ts b/src/lib/schemas.ts
+index 52f3a4a..8242a44 100644
+--- a/src/lib/schemas.ts
++++ b/src/lib/schemas.ts
+@@ -7,7 +7,12 @@ export const EXPENSE_NOTES_MAX = 5_000
+ 
+ export const groupFormSchema = z
+   .object({
+-    name: z.string().min(2, 'min2').max(50, 'max50'),
++    name: z
++      .string()
++      .max(50, 'max50')
++      // Count only visible characters, so a name of spaces, tabs or zero-width
++      // characters is rejected like an empty one.
++      .refine((name) => name.replace(/[\s\p{Cf}]/gu, '').length >= 2, 'min2'),
+     information: z.string().max(GROUP_INFORMATION_MAX, 'max10000').optional(),
+     currency: z.string().min(1, 'min1').max(5, 'max5'),
+     currencyCode: z.union([z.string().length(3).nullish(), z.literal('')]), // ISO-4217 currency code

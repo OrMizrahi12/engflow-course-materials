@@ -34,6 +34,22 @@ everyone.
 - A smooth session: it has little to teach.
 - A verdict on the code: that is code review.
 
+## After a bug fix (lesson 10.4)
+
+The same skill, pointed at one fixed bug instead of a whole session: "What in this repo let #14 reach a user, and what would
+have caught it first?" It reads the workflows, the history of the broken rule and the tests, and sorts each candidate the
+same way.
+
+| On camera | What it becomes |
+|---|---|
+| The same flaw is live in three more fields, found by one grep | mechanical: one shared helper and a CI step that fails on the grep |
+| No test ever exercised the rule | the regression test from phase 5 covers it now |
+| CI checks `main` only after the code lands | a local pre-commit hook, the cheapest gate on that plan |
+| End-to-end tests run only on release tags | they can't be the first catch |
+
+It still only proposes ("I haven't made any of these changes"). Pick one and have it filed as an issue with `needs-triage`, so
+it waits in the tracker like any other report.
+
 ## It's working if
 
 - Every candidate you keep points at a moment you can find, and you checked at least one yourself.
@@ -42,4 +58,4 @@ everyone.
 - `CLAUDE.md` didn't grow.
 
 From [mattpocock/skills](https://github.com/mattpocock/skills) (MIT License), described in our own words. Unofficial, not
-affiliated with or endorsed by Matt Pocock. First used in lesson 7.2.
+affiliated with or endorsed by Matt Pocock. First used in lesson 7.2; after a bug fix in lesson 10.4.

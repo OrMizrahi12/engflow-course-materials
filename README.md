@@ -54,3 +54,4 @@ course is filed into either project.
 | 10.1 Day one in Spliit | [lessons/10.1](lessons/10.1) |
 | 10.2 /triage real issues | [lessons/10.2](lessons/10.2) |
 | 10.3 /diagnosing-bugs I: the loop first | [lessons/10.3](lessons/10.3) |
+| 10.4 /diagnosing-bugs II: from hypotheses to a regression test | [lessons/10.4](lessons/10.4) |

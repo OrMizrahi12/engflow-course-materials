@@ -1,0 +1,19 @@
+Reject group names with no visible characters
+
+A group name of only spaces passed validation and created a group with
+no visible name. The cause (hypothesis H1 in the diagnosis): the name
+rule was z.string().min(2), which counts characters, not visible ones,
+so "  " passed while " " and "" were rejected. The group form
+(zodResolver), groups.create and groups.update all validate against
+this one rule, and nothing between them and the database changes the
+name, so the form, creating and editing all had the bug.
+
+The rule now ignores whitespace and invisible format characters
+(\s, \p{Cf}: spaces, tabs, U+00A0, U+200B) before applying the
+two-character minimum, and reports the same min2 message. Names are
+checked, not trimmed. Participant names have the same flaw and are
+tracked in #16.
+
+Closes #14
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
