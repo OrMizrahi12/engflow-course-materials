@@ -1,0 +1,1 @@
+Before I put the label on #40: an unattended run can't ask questions, so the ticket has to name a seam CI can run. Its test should sit next to the /g/ masking test, and that one is a browser test that needs a database and a dev server. Rewrite only its second Done when line so the seam is the log cleaner, tested with Vitest inside npm run check. Keep the browser test as it is.

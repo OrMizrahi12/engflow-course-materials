@@ -1,0 +1,1 @@
+Four fixes, then land it. Quote both tool lists: the spaces inside them split each rule in two. Add --permission-mode acceptEdits, or auto mode can run commands that aren't on the list. Drop the GH_TOKEN env on the action step: the action sets its own app token for gh, and that's what makes CI run on Claude's PR. Give the job a 30-minute timeout.
