@@ -57,5 +57,6 @@ course is filed into either project.
 | 10.3 /diagnosing-bugs I: the loop first | [lessons/10.3](lessons/10.3) |
 | 10.4 /diagnosing-bugs II: from hypotheses to a regression test | [lessons/10.4](lessons/10.4) |
 | 10.5 /improve-codebase-architecture | [lessons/10.5](lessons/10.5) |
+| 10.6 Design it twice | [lessons/10.6](lessons/10.6) |
 | 11.1 A label starts the work | [lessons/11.1](lessons/11.1) |
 | 11.2 What stays human | [lessons/11.2](lessons/11.2) |
