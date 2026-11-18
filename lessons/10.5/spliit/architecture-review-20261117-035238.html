@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Architecture review: spliit</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+</script>
+<style>
+  .seam { stroke-dasharray: 4 4; }
+  .deep { background: linear-gradient(135deg, #0f172a, #1e293b); color: #f8fafc; }
+  .lbl { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+  .faded { opacity: .45; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
+</head>
+<body class="bg-stone-50 text-slate-900 font-sans">
+<main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+
+<header class="space-y-4">
+  <p class="text-xs uppercase tracking-wider text-slate-500">Architecture review · 2026-11-17 · scope chosen from 18 months of git history</p>
+  <h1 class="font-serif text-4xl">spliit: where to deepen</h1>
+  <div class="flex flex-wrap gap-2 text-xs">
+    <span class="px-2 py-1 rounded bg-white border border-slate-300">Hot spots: <code>expense-form.tsx</code> 24 commits · <code>api.ts</code> 9 · <code>currency.ts</code> 8 · <code>group-form.tsx</code> 7 · CSV export 7 · <code>schemas.ts</code> 6</span>
+  </div>
+  <div class="flex flex-wrap gap-4 text-xs text-slate-600 items-center">
+    <span class="flex items-center gap-1"><span class="inline-block w-4 h-3 border border-slate-500 bg-white"></span> module</span>
+    <span class="flex items-center gap-1"><svg width="24" height="6"><line x1="0" y1="3" x2="24" y2="3" stroke="#64748b" class="seam"/></svg> seam</span>
+    <span class="flex items-center gap-1"><svg width="24" height="6"><line x1="0" y1="3" x2="24" y2="3" stroke="#dc2626" stroke-width="2"/></svg> leak</span>
+    <span class="flex items-center gap-1"><span class="inline-block w-4 h-3 deep"></span> deep module</span>
+  </div>
+</header>
+
+<section id="candidates" class="space-y-10">
+
+<!-- 1 -->
+<article id="c1" class="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm">
+  <div class="flex flex-wrap items-center gap-2">
+    <h2 class="font-serif text-2xl mr-2">1. Pull the expense form model out of the 1,524-line component</h2>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-emerald-100 text-emerald-800 font-semibold">Strong</span>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700">in-process</span>
+  </div>
+  <ul class="font-mono text-sm text-slate-600">
+    <li>src/app/groups/[groupId]/expenses/expense-form.tsx (lines 1–627 are logic, before any JSX)</li>
+    <li>src/lib/schemas.ts · src/lib/utils.ts · src/lib/shares.ts · src/lib/totals.ts</li>
+  </ul>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-3">Before: one split value, three encodings, ~10 places</p>
+      <div class="relative border-2 border-slate-400 rounded p-3 space-y-1.5 text-xs">
+        <p class="lbl text-slate-500">expense-form.tsx</p>
+        <div class="border-l-4 border-red-400 pl-2">load: shares / 100 <span class="text-slate-400">:238, :137</span></div>
+        <div class="border-l-4 border-red-400 pl-2">submit: amountAsMinorUnits <span class="text-slate-400">:326</span></div>
+        <div class="border-l-4 border-red-400 pl-2">preview: fake Prisma row, × 100 again <span class="text-slate-400">:1163</span></div>
+        <div class="border-l-4 border-red-400 pl-2">by-amount auto-balance effect <span class="text-slate-400">:410</span></div>
+        <div class="border-l-4 border-red-400 pl-2">"must add up" sums, re-derived <span class="text-slate-400">:582</span></div>
+        <div class="border-l-4 border-red-400 pl-2">default splitting options, shares: 100 <span class="text-slate-400">:142</span></div>
+        <div class="border-l-4 border-red-400 pl-2">enforceCurrencyPattern ×7 sites</div>
+        <div class="border-t border-dashed border-slate-300 pt-1.5 text-slate-500">+ schemas.ts transform: × 100 for non-amount modes</div>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">Tested only through e2e specs.</p>
+    </div>
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-3">After: a deep expense form model behind one seam</p>
+      <div class="border-2 border-slate-400 rounded p-3 text-xs mb-3">
+        <p class="lbl text-slate-500">expense-form.tsx: JSX + react-hook-form only (~800 lines)</p>
+      </div>
+      <svg width="100%" height="18"><line x1="10" y1="9" x2="98%" y2="9" stroke="#64748b" class="seam"/></svg>
+      <div class="deep rounded p-4 mt-2">
+        <p class="lbl text-slate-300 mb-2">expense form model · pure, unit-tested</p>
+        <div class="grid grid-cols-2 gap-1.5 text-xs">
+          <span class="bg-slate-700 rounded px-2 py-1">to form values</span>
+          <span class="bg-slate-700 rounded px-2 py-1">from form values</span>
+          <span class="bg-slate-700 rounded px-2 py-1">preview shares</span>
+          <span class="bg-slate-700 rounded px-2 py-1">rebalance by amount</span>
+        </div>
+        <p class="text-xs text-slate-400 mt-2">All split value ↔ share encoding lives here, calling <code>getExpenseShares</code> unchanged (ADR-0003).</p>
+      </div>
+    </div>
+  </div>
+  <p><b>Problem.</b> The most-changed file mixes rendering with every rule for turning split values into shares and back, so each change and each bug has to be traced across the whole component.</p>
+  <p><b>Solution.</b> Move loading, submitting, previewing and rebalancing into one pure expense form model module that the component calls.</p>
+  <ul class="text-sm list-disc pl-5 text-slate-700">
+    <li>Locality: one place owns all three encodings</li>
+    <li>Interface is the test surface: Jest, not Playwright</li>
+    <li>Preview stops faking Prisma rows</li>
+    <li>Component shrinks to rendering</li>
+  </ul>
+</article>
+
+<!-- 2 -->
+<article id="c2" class="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm">
+  <div class="flex flex-wrap items-center gap-2">
+    <h2 class="font-serif text-2xl mr-2">2. Split the expense schema: form input vs. stored expense</h2>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-emerald-100 text-emerald-800 font-semibold">Strong</span>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700">in-process</span>
+  </div>
+  <ul class="font-mono text-sm text-slate-600">
+    <li>src/lib/schemas.ts (expenseFormSchema)</li>
+    <li>src/trpc/routers/groups/expenses/create.procedure.ts · update.procedure.ts</li>
+  </ul>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-2">Before: one schema, two unit systems</p>
+<pre class="mermaid">
+flowchart TB
+  F["Form resolver<br/>major units, strings"] --> S["expenseFormSchema<br/>amount ≤ 10_000_000_00"]
+  T["tRPC input<br/>minor units, numbers"] --> S
+  S -. "typeof shares === 'string'?" .-> S
+  linkStyle 0 stroke:#dc2626,stroke-width:2px
+  linkStyle 1 stroke:#dc2626,stroke-width:2px
+</pre>
+      <p class="text-xs text-red-700 mt-2">Verified: the form accepts amounts up to 1,000,000,000.00, while the server rejects anything over 10,000,000.00 with a raw error.</p>
+    </div>
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-2">After: one meaning per schema</p>
+<pre class="mermaid">
+flowchart TB
+  F["Form input schema<br/>major units"] --> M["expense form model<br/>from form values"]
+  M --> E["Expense input schema<br/>minor units, integer shares"]
+  E --> T["tRPC create / update"]
+  classDef deep fill:#0f172a,color:#f8fafc,stroke:#0f172a
+  class M,E deep
+</pre>
+    </div>
+  </div>
+  <p><b>Problem.</b> One schema validates major-unit strings on the client and minor-unit numbers on the server, so the same rule checks different things on each side.</p>
+  <p><b>Solution.</b> Have two schemas: one for form input and one for the stored-expense wire shape, with candidate 1's mapping between them.</p>
+  <ul class="text-sm list-disc pl-5 text-slate-700">
+    <li>Fixes the 100× amount-limit mismatch</li>
+    <li>No more <code>typeof</code> checks inside the schema</li>
+    <li>Server validation becomes testable on its own</li>
+  </ul>
+</article>
+
+<!-- 3 -->
+<article id="c3" class="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm">
+  <div class="flex flex-wrap items-center gap-2">
+    <h2 class="font-serif text-2xl mr-2">3. Give expense writes one module that owns activity, transaction and group scope</h2>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-emerald-100 text-emerald-800 font-semibold">Strong</span>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700">local-substitutable (Prisma + test DB)</span>
+  </div>
+  <ul class="font-mono text-sm text-slate-600">
+    <li>src/lib/api.ts (722 lines, 17 exports, ~26 importers)</li>
+    <li>src/lib/recurrence.ts</li>
+  </ul>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-3">Before: each write repeats the same steps by hand</p>
+      <div class="space-y-1 text-xs">
+        <div class="h-8 border-l-4 border-slate-300 bg-slate-50 pl-2 flex items-center">validate participants <span class="text-slate-400 ml-1">(copy-pasted :48 / :223)</span></div>
+        <div class="h-8 border-l-4 border-red-400 bg-red-50 pl-2 flex items-center">logActivity, <b class="mx-1">before</b> the write ×6</div>
+        <div class="h-8 border-l-4 border-red-400 bg-red-50 pl-2 flex items-center">prisma write, no transaction</div>
+        <div class="h-8 border-l-4 border-red-400 bg-red-50 pl-2 flex items-center">where: &#123; id: expenseId &#125;: groupId ignored</div>
+        <div class="h-8 border-l-4 border-slate-300 bg-slate-50 pl-2 flex items-center">recurring link: 3-boolean decision :237</div>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">If the write fails, the activity entry is still recorded. Activity logging and <code>deleteExpense</code> have no tests.</p>
+    </div>
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-3">After: one thick band</p>
+      <div class="deep rounded p-4 h-44 flex flex-col justify-between">
+        <div>
+          <p class="lbl text-slate-300">expense writes module</p>
+          <p class="text-sm mt-1">create · update · delete (groupId, expense)</p>
+        </div>
+        <div class="text-xs text-slate-400 space-y-0.5">
+          <p>inside: one transaction · activity recorded with the write · scoped to the group · recurring link handled</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p><b>Problem.</b> Every rule an expense write must follow (record activity, check participants, scope to the group) is repeated by each function in <code>api.ts</code>, and some copies have drifted.</p>
+  <p><b>Solution.</b> Make one expense writes module whose small interface carries out all of those rules inside a single transaction.</p>
+  <ul class="text-sm list-disc pl-5 text-slate-700">
+    <li>Locality: activity has one source</li>
+    <li>No activity entries for writes that failed</li>
+    <li>Group scope enforced once</li>
+    <li>Tests hit one interface against a real DB</li>
+  </ul>
+  <div class="rounded bg-amber-50 border border-amber-200 px-3 py-2 text-sm text-amber-900">Related to ADR-0001, not in conflict with it: the link is the only access control, but <code>getExpense</code>, <code>updateExpense</code> and <code>deleteExpense</code> ignore <code>groupId</code>. Anyone with one group's link can reach an expense in another group if they know its id, and the activity entry lands in the wrong group. Worth fixing on its own.</div>
+</article>
+
+<!-- 4 -->
+<article id="c4" class="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm">
+  <div class="flex flex-wrap items-center gap-2">
+    <h2 class="font-serif text-2xl mr-2">4. Make the recurring-frame pass explicit, once per request</h2>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-amber-100 text-amber-800 font-semibold">Worth exploring</span>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700">local-substitutable</span>
+  </div>
+  <ul class="font-mono text-sm text-slate-600">
+    <li>src/lib/api.ts (getGroupExpenses, createRecurringExpenses)</li>
+    <li>src/trpc/routers/** (27 files, 618 lines; ~7 pass-through procedures)</li>
+    <li>balances/forUser.procedure.ts · stats/overview.procedure.ts</li>
+  </ul>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-2">Before: frames created as a hidden side effect of reads</p>
+<pre class="mermaid">
+flowchart LR
+  L[expenses/list] --> G[getGroupExpenses]
+  B[balances/list] --> G
+  U["balances/forUser<br/>× N groups"] --> G
+  O["stats/overview ×2"] --> G
+  G -->|unscoped pass, every call| R[createRecurringExpenses]
+  linkStyle 4 stroke:#dc2626,stroke-width:2px
+</pre>
+    </div>
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-2">After: one visible step per request</p>
+<pre class="mermaid">
+flowchart LR
+  P[procedures] --> E["ensure recurring frames<br/>(once per request)"]
+  P --> Q["group ledger read<br/>(pure read)"]
+  classDef deep fill:#0f172a,color:#f8fafc,stroke:#0f172a
+  class E,Q deep
+</pre>
+    </div>
+  </div>
+  <p><b>Problem.</b> Under ADR-0002, frames are created when expenses are read, but the write is buried inside a function named like a plain read. It runs N times for <code>forUser</code> and twice in <code>overview</code>, which already has a comment working around the race.</p>
+  <p><b>Solution.</b> Keep create-on-read, but give it its own named step that runs once per request, and fold the pass-through procedures into their routers.</p>
+  <ul class="text-sm list-disc pl-5 text-slate-700">
+    <li>Reads become pure and testable</li>
+    <li>The overview race disappears</li>
+    <li>~15 pass-through files go</li>
+  </ul>
+  <div class="rounded bg-amber-50 border border-amber-200 px-3 py-2 text-sm text-amber-900">Keeps ADR-0002 (frames are created on read, with no scheduler). It changes only how many times and where the pass runs.</div>
+</article>
+
+<!-- 5 -->
+<article id="c5" class="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm">
+  <div class="flex flex-wrap items-center gap-2">
+    <h2 class="font-serif text-2xl mr-2">5. One ledger expense shape for totals, balances, CSV export and the form</h2>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-amber-100 text-amber-800 font-semibold">Worth exploring</span>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700">in-process</span>
+  </div>
+  <ul class="font-mono text-sm text-slate-600">
+    <li>src/lib/totals.ts:58 · src/lib/balances.ts:24 · expenses/export/csv/route.ts:48 · expense-form.tsx:1163</li>
+    <li>src/lib/shares.ts (ShareInput)</li>
+  </ul>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-3">Before: four mappers into ShareInput</p>
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <div class="border border-slate-400 rounded p-2">totals<br/><span class="text-red-600">toShareInput</span></div>
+        <div class="border border-slate-400 rounded p-2">balances<br/><span class="text-red-600">inline copy</span></div>
+        <div class="border border-slate-400 rounded p-2">CSV export<br/><span class="text-red-600">own Prisma query</span></div>
+        <div class="border border-slate-400 rounded p-2">form preview<br/><span class="text-red-600">fake Prisma row</span></div>
+      </div>
+      <div class="mt-3 border-2 border-slate-700 rounded p-2 text-xs text-center">getExpenseShares (ADR-0003)</div>
+      <p class="text-xs text-slate-500 mt-2">Five modules import <code>api.ts</code> just for its types.</p>
+    </div>
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-3">After</p>
+      <div class="grid grid-cols-4 gap-1 text-xs text-center faded">
+        <div class="border rounded p-1">totals</div><div class="border rounded p-1">balances</div><div class="border rounded p-1">CSV</div><div class="border rounded p-1">form</div>
+      </div>
+      <svg width="100%" height="18"><line x1="10" y1="9" x2="98%" y2="9" stroke="#64748b" class="seam"/></svg>
+      <div class="deep rounded p-3 text-xs">
+        <p class="lbl text-slate-300">shares module</p>
+        <p>ledger expense type + its share mapping + getExpenseShares</p>
+      </div>
+    </div>
+  </div>
+  <p><b>Problem.</b> Every caller of the share apportionment converts its own row shape first, and the CSV export runs its own query.</p>
+  <p><b>Solution.</b> Let the shares module accept one ledger expense type and have every caller pass that.</p>
+  <ul class="text-sm list-disc pl-5 text-slate-700">
+    <li>Leverage: one mapping, four callers</li>
+    <li>Pure calculation modules stop importing server code</li>
+  </ul>
+</article>
+
+<!-- 6 -->
+<article id="c6" class="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm">
+  <div class="flex flex-wrap items-center gap-2">
+    <h2 class="font-serif text-2xl mr-2">6. A money module: minor units, conversion and the create-expense URL</h2>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-amber-100 text-amber-800 font-semibold">Worth exploring</span>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700">in-process</span>
+  </div>
+  <ul class="font-mono text-sm text-slate-600">
+    <li>src/lib/utils.ts:70-150 · src/lib/currency-conversion.ts · src/lib/currency.ts · src/lib/hooks.ts (useCurrencyRate)</li>
+    <li>reimbursement-list.tsx:49 · create-from-receipt-button.tsx:260 · expense-form.tsx:256, :287, :1264</li>
+  </ul>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-2">Before: the <code>?amount=</code> URL parameter has two meanings</p>
+<pre class="mermaid">
+flowchart LR
+  R["suggested reimbursement"] -- "minor units" --> U(("?amount="))
+  S["receipt scan"] -- "major units" --> U
+  U --> F[expense form guesses<br/>by reimbursement=yes]
+  linkStyle 0 stroke:#dc2626,stroke-width:2px
+  linkStyle 1 stroke:#dc2626,stroke-width:2px
+</pre>
+      <p class="text-xs text-slate-500 mt-2">The form also has its own inline copy of the conversion at :1264, bypassing the tested helper.</p>
+    </div>
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-2">After</p>
+<pre class="mermaid">
+flowchart LR
+  R[suggested reimbursement] --> M
+  S[receipt scan] --> M
+  M["money module<br/>parse · format · convert<br/>create-expense link"] --> F[expense form]
+  classDef deep fill:#0f172a,color:#f8fafc,stroke:#0f172a
+  class M deep
+</pre>
+    </div>
+  </div>
+  <p><b>Problem.</b> Understanding money means reading five modules, and the units a value is in depend on who passed it.</p>
+  <p><b>Solution.</b> Put parsing, formatting, conversion and the create-expense link format into one money module.</p>
+  <ul class="text-sm list-disc pl-5 text-slate-700">
+    <li>Locality: units decided in one place</li>
+    <li>Conversion goes through one tested path</li>
+  </ul>
+</article>
+
+<!-- 7 -->
+<article id="c7" class="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm">
+  <div class="flex flex-wrap items-center gap-2">
+    <h2 class="font-serif text-2xl mr-2">7. Per-device state behind one module</h2>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-slate-200 text-slate-700 font-semibold">Speculative</span>
+    <span class="px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700">ports &amp; adapters (localStorage / in-memory)</span>
+  </div>
+  <ul class="font-mono text-sm text-slate-600">
+    <li>hooks.ts:61 · expense-list.tsx:34 · active-user-modal.tsx · global-balance-card.tsx · group-form.tsx:104 · expense-form.tsx:111, :203</li>
+  </ul>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-3">Before</p>
+      <div class="flex flex-wrap gap-1 text-xs">
+        <span class="border border-red-400 rounded px-1.5 py-0.5">`${groupId}-activeUser`</span>
+        <span class="border border-red-400 rounded px-1.5 py-0.5">'None'</span>
+        <span class="border border-red-400 rounded px-1.5 py-0.5">newGroup-activeUser</span>
+        <span class="border border-red-400 rounded px-1.5 py-0.5">-defaultSplittingOptions (×100 encoding)</span>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">These raw keys appear in 7 files. The expense form reimplements <code>useActiveUser</code> even though it also calls it.</p>
+    </div>
+    <div class="rounded-lg border border-slate-200 p-4">
+      <p class="lbl text-slate-500 mb-3">After</p>
+      <div class="deep rounded p-3 text-xs">
+        <p class="lbl text-slate-300">device preferences</p>
+        <p>active user · default splitting options</p>
+      </div>
+    </div>
+  </div>
+  <p><b>Problem.</b> The active user and default splitting options are read and written through string keys repeated across seven files.</p>
+  <p><b>Solution.</b> Put one device-preferences module in front of <code>localStorage</code>.</p>
+  <ul class="text-sm list-disc pl-5 text-slate-700">
+    <li>The key format exists in one place</li>
+    <li>Testable with an in-memory adapter</li>
+  </ul>
+  <p class="text-xs text-slate-500">ADR-0001 explains why this state is per browser. This candidate leaves that alone and changes only where the state is read and written.</p>
+</article>
+
+</section>
+
+<section id="top-recommendation" class="rounded-xl border-2 border-emerald-600 bg-emerald-50 p-6 space-y-2">
+  <p class="lbl text-emerald-800">Top recommendation</p>
+  <h2 class="font-serif text-2xl"><a href="#c1" class="underline decoration-emerald-400">Candidate 1: the expense form model</a>, with candidate 2 in the same piece of work</h2>
+  <p>The expense form is where the history keeps coming back (24 commits), it has no unit tests, and its encoding rules are what make the schema serve two unit systems. Extracting the model creates the seam that the split schemas need, and it fixes the verified amount-limit bug along the way. Separately, the <code>groupId</code> scoping gap from candidate 3 is small enough to fix now.</p>
+</section>
+
+</main>
+</body>
+</html>
