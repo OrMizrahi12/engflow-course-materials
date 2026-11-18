@@ -1,0 +1,1 @@
+One fix: CI doesn't run Playwright. check.yml only runs npm run check, and Playwright runs locally against the dev server, so every browser test uses the fake. Fix that in #51.

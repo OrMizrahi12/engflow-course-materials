@@ -1,0 +1,1 @@
+Take ready-for-agent off the spec, so nothing unattended tries to build it whole.
