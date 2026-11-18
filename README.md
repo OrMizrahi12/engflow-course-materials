@@ -50,8 +50,8 @@ course is filed into either project.
 | 8.1 Three tickets at once | [lessons/8.1](lessons/8.1) |
 | 8.3 Background sessions and phase boundaries | [lessons/8.3](lessons/8.3) |
 | 9.1 /wayfinder: chart the map | [lessons/9.1](lessons/9.1) |
-| 9.3 From map to shipped feature | [lessons/9.3](lessons/9.3) |
 | 9.2 Work the map | [lessons/9.2](lessons/9.2) |
+| 9.3 From map to shipped feature | [lessons/9.3](lessons/9.3) |
 | 10.1 Day one in Spliit | [lessons/10.1](lessons/10.1) |
 | 10.2 /triage real issues | [lessons/10.2](lessons/10.2) |
 | 10.3 /diagnosing-bugs I: the loop first | [lessons/10.3](lessons/10.3) |
