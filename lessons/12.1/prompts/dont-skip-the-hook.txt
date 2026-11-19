@@ -1,0 +1,1 @@
+Don't skip the hook. Run it with fewer test workers, VITEST_MAX_WORKERS=4, then land it.
