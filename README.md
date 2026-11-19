@@ -62,4 +62,5 @@ course is filed into either project.
 | 11.1 A label starts the work | [lessons/11.1](lessons/11.1) |
 | 11.2 What stays human | [lessons/11.2](lessons/11.2) |
 | 12.1 What "in production" really means | [lessons/12.1](lessons/12.1) |
+| 12.2 Schema changes that can't hurt production | [lessons/12.2](lessons/12.2) |
 | 12.3 The release pipeline | [lessons/12.3](lessons/12.3) |
