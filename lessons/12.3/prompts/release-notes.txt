@@ -1,0 +1,1 @@
+Production serves 1f60b51 now, and it passed its smoke test. Write release notes for v0.1.0 from the bodies of the PRs merged since the lesson-12.1 tag: first what someone using Potluck would notice, then what only we notice. Create the GitHub release v0.1.0 on that commit, then show me the notes.

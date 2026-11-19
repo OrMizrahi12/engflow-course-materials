@@ -1,0 +1,1 @@
+Neither. Add only the commit to /api/health here; it rides with #69. Smoke what exists today: the home page, health with the commit, the made-up link. The database and schema checks join when #65 lands.

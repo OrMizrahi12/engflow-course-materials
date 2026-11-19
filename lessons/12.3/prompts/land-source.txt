@@ -1,0 +1,1 @@
+Add the file to what-stays-human.md in this PR; the deny list waits for its own PR. Print one line when the check passes, so the build log shows it. Then land it. It changes what the production build runs, so don't queue auto-merge: I'll merge it.

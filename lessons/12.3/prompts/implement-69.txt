@@ -1,0 +1,1 @@
+Read my comment on it first. Don't change or print any Vercel or GitHub setting or secret yourself (the project settings hold the bypass secret): when the code is done, list exactly what I have to switch on, in order.

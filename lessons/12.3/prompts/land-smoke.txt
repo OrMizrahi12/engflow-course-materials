@@ -1,0 +1,1 @@
+No new secret: the production address is public, so write it into the workflow. Then land it, but don't queue auto-merge: I'll switch on repository dispatch first and merge it myself.

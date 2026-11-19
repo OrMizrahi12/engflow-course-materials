@@ -1,0 +1,1 @@
+It's merged, and repository dispatch was on before the merge. The Smoke test status still says pending after five minutes. Read this release from GitHub and the CLI, not from memory: when did it go live, did the smoke test run against it, and which commit does production serve now? Don't print Vercel's project settings.
