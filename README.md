@@ -68,3 +68,4 @@ course is filed into either project.
 | 12.4 Eyes on production | [lessons/12.4](lessons/12.4) |
 | 12.5 Safe by default | [lessons/12.5](lessons/12.5) |
 | 12.6 When production breaks | [lessons/12.6](lessons/12.6) |
+| 12.7 Launch day | [lessons/12.7](lessons/12.7) |
