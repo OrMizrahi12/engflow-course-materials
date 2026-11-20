@@ -1,0 +1,1 @@
+Review the entire Potluck application (src/, scripts/, next.config.ts, vercel.json, and .github/workflows/), not just a git diff. Focus on link-token handling, SQL queries, Server Actions, input caps, error/log scrubbing, headers, and workflow triggers. Report high-confidence findings only, without editing any files.
