@@ -69,3 +69,4 @@ course is filed into either project.
 | 12.5 Safe by default | [lessons/12.5](lessons/12.5) |
 | 12.6 When production breaks | [lessons/12.6](lessons/12.6) |
 | 12.7 Launch day | [lessons/12.7](lessons/12.7) |
+| 12.8 A day in the life of a live product | [lessons/12.8](lessons/12.8) |
