@@ -1,0 +1,1 @@
+It adds a workflow under .github, so land it without auto-merge: I'll merge it. Give it a manual run with a URL input, so I can force one failure on purpose. On this machine the browser tests need --workers=2.

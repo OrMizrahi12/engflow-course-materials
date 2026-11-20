@@ -1,0 +1,1 @@
+id=$(gh api repos/{owner}/{repo}/commits/$(git rev-parse origin/main)/status --jq ".statuses[] | select(.context==\"Vercel\") | .target_url | split(\"/\") | last"); npx vercel@65.5.0 inspect dpl_$id --logs 2>&1 | grep -E "Running \"npm|from main|[Rr]estore |igrat|[Ss]entry|ource map|Build Completed"

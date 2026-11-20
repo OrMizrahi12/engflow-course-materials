@@ -1,0 +1,1 @@
+Write what you just did into the verify skill as a read-only production section: the deploy list and log query, the commit statuses, Sentry through its read-only connection, the live site without writing anything, and never a connection to the production database. Try that section once against the live site, then land it.

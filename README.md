@@ -64,3 +64,4 @@ course is filed into either project.
 | 12.1 What "in production" really means | [lessons/12.1](lessons/12.1) |
 | 12.2 Schema changes that can't hurt production | [lessons/12.2](lessons/12.2) |
 | 12.3 The release pipeline | [lessons/12.3](lessons/12.3) |
+| 12.4 Eyes on production | [lessons/12.4](lessons/12.4) |

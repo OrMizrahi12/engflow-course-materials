@@ -1,0 +1,1 @@
+Keep what the smoke test relies on in /api/health (the commit it reports) and keep that test passing. The new liveness route is what Sentry's uptime monitor will call every 5 minutes, so it must never touch the database. On this machine the browser tests need --workers=2. When the review is done, land it.

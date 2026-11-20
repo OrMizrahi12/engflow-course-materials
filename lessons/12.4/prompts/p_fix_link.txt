@@ -1,0 +1,1 @@
+One change before I run it: stage 5 mustn't run vercel link, which can pull development variables into a file. Read the names and targets with npx vercel@65.5.0 api /v9/projects/potluck/env through jq instead: that needs no link. Then commit and stop.
